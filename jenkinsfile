@@ -4,17 +4,9 @@ String version = env.BUILD_NUMBER
 
 node('windows') {
 
-    stage("Upload Cookbooks and databags to S3") {
-        // Upload coookbooks
-        bat "python -c \"from scripts.utils_cli import cookbooks_upload; cookbooks_upload('${cookbooksContainer}','${AzureStorageAccountkey}','cookbooks')\""
-        // Upload databags
-        bat "python -c \"from scripts.utils_cli import data_bags_upload; data_bags_upload('${cookbooksContainer}','${AzureStorageAccountkey}','cookbooks')\""
+    stage("print env variables") {
+        echo customer
+        echo customer2
     }
 
-}
-
-def String getEnvironmentList (){
-    bat 'python -c "from scripts.utils_cli import list_env_directories; list_env_directories()"'
-    def env_list = readFile('env_list').trim()
-    return env_list
 }
